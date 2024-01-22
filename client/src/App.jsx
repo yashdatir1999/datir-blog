@@ -6,10 +6,12 @@ import SignUp from './pages/Signup'
 import SignIn from './pages/Signin'
 import Dashboard from './pages/Dashboard'
 import Projects from './pages/Projects'
+import Header from './components/Header'
 
 const App = () => {
   return (
-    
+    <div>
+    <Header />
     <Routes>
       <Route path='/' element={<Home />}/>
       <Route path='/about' element={<About />}/>
@@ -19,6 +21,7 @@ const App = () => {
       <Route path='/dashboard' element={<Dashboard />}/>
       <Route path='/projects' element={<Projects />}/>
     </Routes>
+    </div>
 
   )
 }
