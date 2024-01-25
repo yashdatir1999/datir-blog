@@ -80,11 +80,11 @@ const FooterComp = () => {
             <div className='w-full sm:flex sm:items-center sm:justify-between '>
                 <Footer.Copyright href='#' by="Datir's Blog" year={new Date().getFullYear()}/>
             <div className='flex gap-6 sm:mt-0 mt-4 sm:justify-center'>
-                <Footer.Icon href='' icon={BsFacebook}/>
-                <Footer.Icon href='' icon={BsInstagram  }/>
-                <Footer.Icon href='' icon={BsLinkedin}/>
-                <Footer.Icon href='' icon={BsGithub}/>
-                <Footer.Icon href='' icon={MdEmail}/>
+                <Footer.Icon href='https://www.facebook.com/yash.datir.3' target='_blank' icon={BsFacebook}/>
+                <Footer.Icon target='_blank' href='https://www.instagram.com/yash._.datir/' icon={BsInstagram  }/>
+                <Footer.Icon target='_blank' href='https://www.linkedin.com/in/yashdatir/' icon={BsLinkedin}/>
+                <Footer.Icon target='_blank' href='https://github.com/yashdatir1999' icon={BsGithub}/>
+                <Footer.Icon target='_blank' href='yashdatir1999@gmail.com' icon={MdEmail}/>
             </div>
             </div>
         </div>
