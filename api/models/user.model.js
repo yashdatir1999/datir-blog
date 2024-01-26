@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     profilePicture:{
         type: String,
         default: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-vector%2Fprofile-icon&psig=AOvVaw3vF8ww7HGVy-dNEA6ptNe6&ust=1706183437424000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCIib6uL69YMDFQAAAAAdAAAAABAD"
+    },
+    isAdmin:{
+        type: Boolean,
+        default: false
     }
 },{timestamps: true})
 
