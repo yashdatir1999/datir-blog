@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 const DashPosts = () => {
   const {currentUser} = useSelector((state)=> state.user)
   const [userPosts, setuserPosts] = useState([])
+  const [showMore, setshowMore] = useState(true)
   console.log(userPosts)
   useEffect(()=>{
     const fetchPosts = async ()=>{
@@ -13,6 +14,9 @@ const DashPosts = () => {
         const data = await res.json()
         if(res.ok){
           setuserPosts(data.posts)
+          if(data.posts.length < 9){
+            setshowMore(false)
+          }
         }
       } catch (error) {
         console.log(error.message)
@@ -22,8 +26,26 @@ const DashPosts = () => {
       fetchPosts()
     }
   },[currentUser._id])
+
+  const showMoreHandler = async () => {
+    const startIndex = userPosts.length;
+    try {
+      const res = await fetch(
+        `/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+      );
+      const data = await res.json();
+      if (res.ok) {
+        setuserPosts((prev) => [...prev, ...data.posts]);
+        if (data.posts.length < 9) {
+          setshowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
   return (
-    <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700
+    <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar  scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700
     dark:scrollbar-thumb-slate-500'>
       {currentUser.isAdmin && userPosts.length > 0 ? (
         <>
@@ -31,7 +53,7 @@ const DashPosts = () => {
           <Table.Head>
             <Table.HeadCell>Date updated</Table.HeadCell>
             <Table.HeadCell>Post image</Table.HeadCell>
-            <Table.HeadCell>Post title</Table.HeadCell>
+            <Table.HeadCell className='w-96'>Post title</Table.HeadCell>
             <Table.HeadCell>Category</Table.HeadCell>
             <Table.HeadCell>Delete</Table.HeadCell>
             <Table.HeadCell>
@@ -63,6 +85,13 @@ const DashPosts = () => {
             </Table.Body>
           ))}
         </Table>
+        {
+          showMore && (
+            <button onClick={showMoreHandler} className='w-full text-teal-500 self-center text-sm py-7'>
+              Show More
+            </button>
+          )
+        }
         </>
       ) : (
         <p>You have no posts yet!</p>
