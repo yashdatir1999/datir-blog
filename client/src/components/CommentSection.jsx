@@ -1,7 +1,7 @@
 import {useSelector} from 'react-redux'
 
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Alert, Button, Textarea } from 'flowbite-react'
 import Comment from './Comment'
 
@@ -10,7 +10,8 @@ const CommentSection = ({postId}) => {
     const [comment, setcomment] = useState('')
     const [commentError, setcommentError] = useState(null)
     const [comments, setcomments] = useState([])
-    console.log(comments)
+    const navigate = useNavigate()
+    // console.log(comments)
     const submitHandler = async(e)=>{
         e.preventDefault()
         if(comment.length > 200){
@@ -55,6 +56,35 @@ const CommentSection = ({postId}) => {
         }
         getComments()
     },[postId])
+
+    const likeHandler = async (commentId) =>{
+        try {
+            if (!currentUser) {
+              navigate('/sign-in');
+              return;
+            }
+            const res = await fetch(`/api/comment/likeComment/${commentId}`, {
+              method: 'PUT',
+            });
+            if (res.ok) {
+              const data = await res.json();
+              setcomments(
+                comments.map((comment) =>
+                  comment._id === commentId
+                    ? {
+                        ...comment,
+                        likes: data.likes,
+                        numberOfLikes: data.likes.length,
+                      }
+                    : comment
+                )
+              );
+            }
+          } catch (error) {
+            console.log(error.message);
+          }
+    } 
+
     return (
     <div className='max-w-2xl mx-auto w-full p-3'>
         {currentUser ? (
@@ -98,7 +128,7 @@ const CommentSection = ({postId}) => {
             </div>
             {
                 comments.map(comment =>(
-                    <Comment key={comment._id} comment={comment} />
+                    <Comment key={comment._id} comment={comment} onLike={likeHandler}/>
                 ))
             }
             </>
