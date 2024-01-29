@@ -65,5 +65,3 @@ const CommentSection = ({postId}) => {
 }
 
 export default CommentSection
-
-// 8h 45min vdo complete
