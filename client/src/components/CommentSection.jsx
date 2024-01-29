@@ -107,4 +107,3 @@ const CommentSection = ({postId}) => {
   )
 }
 
-export default CommentSection
