@@ -7,11 +7,13 @@ import {store , persistor} from './redux/store.js'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import TheamProvider from './components/TheamProvider.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <PersistGate persistor={persistor}>
   <Provider store={store}>
   <BrowserRouter>
+  <ScrollToTop />
   <TheamProvider>
   <App />
   </TheamProvider>
