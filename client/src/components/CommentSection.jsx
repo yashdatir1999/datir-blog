@@ -145,7 +145,7 @@ const CommentSection = ({postId}) => {
             </form>
         )}
         {comments.length === 0 ? (
-            <p className='text-sm my-5'>No Comments Yes!</p>
+            <p className='text-sm my-5'>No Comments Yet!</p>
         ) : (
             <>
             <div className="text-sm my-5 flex items-center gap-1">
