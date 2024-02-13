@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import {Button, Spinner} from 'flowbite-react'
 import CallToAction from '../components/CallToAction'
 import CommentSection from '../components/CommentSection'
-import PostCard from '../components/postCard'
+import PostCard from '../components/PostCard'
 const PostPage = () => {
     const {postSlug} = useParams()
     const [loading, setloading] = useState(true)
