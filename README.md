@@ -4,3 +4,5 @@ Datir's Blog Murn is a cutting-edge, full-stack web application crafted with mod
 For authentication, Datir's Blog Murn employs JWT tokens, ensuring secure and reliable user access. Additionally, the inclusion of Google Auth provides a convenient and secure alternative for users.
 
 The application boasts a fully responsive design, adapting effortlessly to various devices. Users can customize their experience with a dynamic dark and light mode, enhancing accessibility and aesthetics. Moreover, Datir's Blog Murn features an extensive admin panel, empowering administrators with comprehensive control and management capabilities for seamless content administration. Overall, Datir's Blog Murn represents a sophisticated and user-friendly blogging platform with advanced features for both users and administrators alike.
+
+[Click Here Project is Live](datir-blog.onrender.com)
